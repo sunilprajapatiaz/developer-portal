@@ -5,6 +5,7 @@ import { CoreDesignModule } from "@paperbits/core/core.design.module";
 import { StylesDesignModule } from "@paperbits/styles/styles.design.module";
 import { ProseMirrorModule } from "@paperbits/prosemirror/prosemirror.module";
 import { OfflineModule } from "@paperbits/common/persistence/offline.module";
+import { VueModule } from "@paperbits/vue/vue.module";
 import { SessionExpirationErrorHandler } from "./errors/sessionExpirationErrorHandler";
 import { ApimDesignModule } from "./apim.design.module";
 
@@ -15,7 +16,9 @@ injector.bindToCollection("autostart", SessionExpirationErrorHandler);
 injector.bindModule(new CoreDesignModule());
 injector.bindModule(new StylesDesignModule());
 injector.bindModule(new ProseMirrorModule());
+injector.bindModule(new VueModule());
 injector.bindModule(new ApimDesignModule());
+
 injector.bindModule(new OfflineModule({ autosave: false }));
 injector.resolve("autostart");
 

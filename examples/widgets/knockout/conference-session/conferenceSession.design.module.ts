@@ -1,13 +1,14 @@
 import { IInjectorModule, IInjector } from "@paperbits/common/injection";
-import { ConferenceSessionEditor } from "./ko/conferenceSessionEditorViewModel";
+import { ConferenceSession } from "./design/conferenceSession";
+import { ConferenceSessionEditor } from "./design/conferenceSessionEditor";
 import { ConferenceSessionHandlers } from "./conferenceSessionHandlers";
-import { ConferenceSessionViewModel, ConferenceSessionViewModelBinder } from "./ko";
-import { ConferenceSessionModelBinder } from ".";
+import { ConferenceSessionModelBinder } from "./conferenceSessionModelBinder";
+import { ConferenceSessionViewModelBinder } from "./";
 
 
 export class ConferenceSessionDesignModule implements IInjectorModule {
     public register(injector: IInjector): void {
-        injector.bind("conferenceSession", ConferenceSessionViewModel);
+        injector.bind("conferenceSession", ConferenceSession);
         injector.bind("conferenceSessionEditor", ConferenceSessionEditor);
         injector.bindToCollection("modelBinders", ConferenceSessionModelBinder);
         injector.bindToCollection("viewModelBinders", ConferenceSessionViewModelBinder);

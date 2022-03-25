@@ -2,23 +2,23 @@ import { Bag } from "@paperbits/common";
 import { EventManager, Events } from "@paperbits/common/events";
 import { ComponentFlow, IWidgetBinding } from "@paperbits/common/editing";
 import { ViewModelBinder } from "@paperbits/common/widgets";
-import { ConferenceSessionViewModel } from "./conferenceSessionViewModel";
-import { widgetName, widgetDisplayName, widgetEditorSelector } from "../constants";
-import { ConferenceSessionModel } from "../conferenceSessionModel";
+import { ConferenceSession } from "./design/conferenceSession";
+import { widgetName, widgetDisplayName, widgetEditorSelector } from "./constants";
+import { ConferenceSessionModel } from "./conferenceSessionModel";
 
 
-export class ConferenceSessionViewModelBinder implements ViewModelBinder<ConferenceSessionModel, ConferenceSessionViewModel>  {
+export class ConferenceSessionViewModelBinder implements ViewModelBinder<ConferenceSessionModel, ConferenceSession>  {
     constructor(private readonly eventManager: EventManager) { }
 
-    public async updateViewModel(model: ConferenceSessionModel, viewModel: ConferenceSessionViewModel): Promise<void> {
+    public async updateViewModel(model: ConferenceSessionModel, viewModel: ConferenceSession): Promise<void> {
         viewModel.runtimeConfig(JSON.stringify({ sessionNumber: model.sessionNumber }));
     }
 
-    public async modelToViewModel(model: ConferenceSessionModel, viewModel?: ConferenceSessionViewModel, bindingContext?: Bag<any>): Promise<ConferenceSessionViewModel> {
+    public async modelToViewModel(model: ConferenceSessionModel, viewModel?: ConferenceSession, bindingContext?: Bag<any>): Promise<ConferenceSession> {
         if (!viewModel) {
-            viewModel = new ConferenceSessionViewModel();
+            viewModel = new ConferenceSession();
 
-            const binding: IWidgetBinding<ConferenceSessionModel, ConferenceSessionViewModel> = {
+            const binding: IWidgetBinding<ConferenceSessionModel, ConferenceSession> = {
                 name: widgetName,
                 displayName: widgetDisplayName,
                 readonly: bindingContext?.readonly,

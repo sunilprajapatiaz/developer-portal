@@ -1,9 +1,9 @@
 import * as ko from "knockout";
-import template from "./conferenceSessionEditorView.html";
+import template from "./conferenceSessionEditor.html";
 import { Component, OnMounted, Param, Event } from "@paperbits/common/ko/decorators";
 import { WidgetEditor } from "@paperbits/common/widgets";
 import { ConferenceSessionModel } from "../conferenceSessionModel";
-import { widgetEditorSelector } from "..";
+import { widgetEditorSelector } from "../constants";
 
 
 @Component({

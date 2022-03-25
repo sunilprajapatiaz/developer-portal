@@ -81,7 +81,8 @@ import { Pagination } from "./components/pagination/pagination";
 import { StaticDataHttpClient } from "./services/staticDataHttpClient";
 import { OauthServerConfiguration } from "./components/operations/operation-details/ko/runtime/oauth-server-configuration";
 import { RuntimeStaticDataProvider } from "./services/runtimeStaticDataProvider";
-import {staticDataEnvironment} from "./../environmentConstants"
+import { staticDataEnvironment } from "./../environmentConstants";
+import { ConferenceSessionRuntimeModule } from "./../examples/widgets/vue/conference-session/conferenceSession.runtime.module";
 
 
 export class ApimRuntimeModule implements IInjectorModule {
@@ -159,5 +160,7 @@ export class ApimRuntimeModule implements IInjectorModule {
             injector.bind("httpClient", StaticDataHttpClient);
             injector.bind("dataProvider", RuntimeStaticDataProvider);
         }
+
+        injector.bindModule(new ConferenceSessionRuntimeModule());
     }
 }

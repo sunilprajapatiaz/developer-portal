@@ -8,7 +8,7 @@ import { widgetSelector } from "../constants";
     selector: widgetSelector,
     template: template
 })
-export class ConferenceSessionViewModel {
+export class ConferenceSession {
     public readonly runtimeConfig: ko.Observable<string>;
 
     constructor() {

@@ -2,8 +2,8 @@
 import * as ko from "knockout";
 import template from "./conference-session-runtime.html";
 import { HttpClient, HttpRequest } from "@paperbits/common/http";
-import { Component, RuntimeComponent, Param, OnMounted, OnDestroyed } from "@paperbits/common/ko/decorators";
-import { widgetRuntimeSelector } from "../..";
+import { Component, RuntimeComponent, Param, OnMounted } from "@paperbits/common/ko/decorators";
+import { widgetRuntimeSelector } from "../constants";
 
 const conferenceApiUrl = "https://conferenceapi.azurewebsites.net/session";
 

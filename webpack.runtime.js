@@ -54,6 +54,10 @@ const runtimeConfig = {
             {
                 test: /\.liquid$/,
                 loader: "raw-loader"
+            },
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader'
             }
         ]
     },
@@ -75,6 +79,9 @@ const runtimeConfig = {
             stream: require.resolve("stream-browserify"),
             querystring: require.resolve("querystring-es3")
         }
+        // alias: {
+        //     "vue$": "vue/dist/vue.esm.js"
+        // }
     }
 }
 

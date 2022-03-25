@@ -51,6 +51,10 @@ const designerConfig = {
                 }
             },
             {
+                test: /\.vue$/,
+                loader: 'vue-loader'
+            },
+            {
                 test: /\.(svg)$/i,
                 type: "asset/inline"
             },
@@ -84,6 +88,9 @@ const designerConfig = {
             buffer: require.resolve("buffer"),
             stream: require.resolve("stream-browserify"),
             querystring: require.resolve("querystring-es3")
+        },
+        alias: {
+            "vue$": "vue/dist/vue.esm.js"
         }
     }
 };
