@@ -5,17 +5,35 @@ import { ISettingsProvider } from "@paperbits/common/configuration";
 import { ClientEvent } from "../models/logging/clientEvent";
 import { v4 as uuidv4 } from "uuid";
 import * as Constants from "../constants";
+import { SessionManager } from "@paperbits/common/persistence/sessionManager";
+import { Utils } from "../utils";
+
+const sessionIdToken = "sessionId";
 
 export class ClientLogger implements Logger {
     private clientVersion: string;
     private backendUrl: string;
     private backendUrlSet: boolean = false;
+    private sessionId: string;
 
     constructor(
         private readonly httpClient: HttpClient,
-        private readonly settingsProvider: ISettingsProvider
+        private readonly settingsProvider: ISettingsProvider,
+        private readonly sessionManager: SessionManager
     ) {
         this.clientVersion = process.env.VERSION;
+        this.initialize();
+    }
+
+    private async initialize(): Promise<void> {
+        let sessionId = await this.sessionManager.getItem<string>(sessionIdToken);
+
+        if (!sessionId) {
+            sessionId = Utils.getBsonObjectId();
+            await this.sessionManager.setItem(sessionIdToken, sessionId);
+        }
+
+        this.sessionId = sessionId;
     }
 
     public async trackSession(properties?: object): Promise<void> {
@@ -36,18 +54,20 @@ export class ClientLogger implements Logger {
         const devPortalEvent = new ClientEvent();
 
         devPortalEvent.eventType = "Error";
-        devPortalEvent.message = properties?.message;
-        devPortalEvent.eventData = JSON.stringify(error);
+        devPortalEvent.message = error.stack || error.message;
+        devPortalEvent.eventData = properties;
 
         this.traceEvent(devPortalEvent);
     }
 
     public async trackView(viewName: string, properties?: Bag<string>): Promise<void> {
+        
+
         const devPortalEvent = new ClientEvent();
 
         devPortalEvent.eventType = viewName;
         devPortalEvent.message = properties?.message;
-        devPortalEvent.eventData = JSON.stringify(properties);
+        devPortalEvent.eventData = properties;
 
         this.traceEvent(devPortalEvent);
     }
@@ -60,11 +80,12 @@ export class ClientLogger implements Logger {
         // Not implemented
     }
 
-    private async traceEvent(clientEvent: ClientEvent) {
+    private async traceEvent(eventType: string, eventData: object, message: string) {
         const datetime = new Date();
 
         clientEvent.timestamp = datetime.toISOString();
         clientEvent.activityId = uuidv4();
+        clientEvent.eventData 
 
         const developerPortalType = await this.settingsProvider.getSetting<string>(Constants.SettingNames.developerPortalType) || Constants.DeveloperPortalType.selfHosted;
 
@@ -76,9 +97,9 @@ export class ClientLogger implements Logger {
             url: await this.getBackendUrl() + `/trace`,
             method: "POST",
             headers: headers,
-            body: JSON.stringify(clientEvent.toJson())
+            body: JSON.stringify(clientEvent)
         };
-        
+
         this.httpClient.send(request);
     }
 

@@ -14,6 +14,7 @@ module.exports = {
         "no-extra-boolean-cast": "warn",
         "no-useless-escape": "off",
         "no-ex-assign": "warn",
+        "no-console": "warn",
         "prefer-spread": "off",
         "prefer-const": "warn",
         "@typescript-eslint/ban-types": "off",

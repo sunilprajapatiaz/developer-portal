@@ -1,7 +1,6 @@
 {
     "environment": "development",
-    "managementApiUrl": "https://<service-name>.management.azure-api.net",
-    "managementApiAccessToken": "SharedAccessSignature ...",
-    "backendUrl": "https://<service-name>.developer.azure-api.net",
+    "managementApiUrl": "https://management.apim.net",
+    "managementApiAccessToken": "SharedAccessSignature 1&202208062058&q3IytQAg+x8nn5QJRF97CKe9N3KTTmFT4Lp+Z8Q6KjA9BA1fMQzsLuhYTTGEZXlRLjaWBEHbdacK+z0m/v1hMQ==",
     "useHipCaptcha": false
 }

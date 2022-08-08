@@ -1,5 +1,6 @@
 import * as ko from "knockout";
 
+
 ko.bindingHandlers["copyToClipboard"] = {
     init: (element: HTMLElement, valueAccessor: () => (string | (() => Promise<string>))): void => {
         const copyToClipboard = async () => {

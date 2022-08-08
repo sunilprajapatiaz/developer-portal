@@ -1,6 +1,6 @@
 {
     "environment": "publishing",
-    "managementApiUrl": "https://<service-name>.management.azure-api.net",
-    "managementApiAccessToken": "SharedAccessSignature...",
+    "managementApiUrl": "https://alzasloneuap06.management.azure-api.net",
+    "managementApiAccessToken": "SharedAccessSignature 1&202208200000&cMIpLulf0JrFQcnx/S0xppwN/Cq9WeFrrV3ddfGTVwkWvJaW3qhkyvVKmI1NXTh4F2dD5ZU4wgN5UsazB10L5g==",
     "useHipCaptcha": false
 }

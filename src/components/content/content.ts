@@ -23,7 +23,7 @@ export class ContentWorkshop {
     ) { }
 
     public async publish(): Promise<void> {
-        this.logger.trackEvent("Click: Publish website");
+        this.logger.trackEvent("UserAction", { click: "Publish website" });
 
         if (!await this.authenticator.isAuthenticated()) {
             throw new AppError("Cannot publish website", new MapiError("Unauthorized", "You're not authorized."));

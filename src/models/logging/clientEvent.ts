@@ -12,7 +12,7 @@ export class ClientEvent {
     /**
      * Payload of event data.
      */
-    public eventData: string;
+    public eventData: object;
 
     /**
      * ISO representation of current time, e.g. `2022-01-01T00:00:00.000Z`.
@@ -23,14 +23,4 @@ export class ClientEvent {
      * uuidv4 value.
      */
     public activityId: string;
-
-    public toJson(): object{
-        return {
-            "eventType": this.eventType,
-            "message": this.message,
-            "eventData": this.eventData,
-            "timestamp": this.timestamp,
-            "activityId": this.activityId
-        }
-    }
 }
