@@ -7,7 +7,7 @@
     <div class="flex-item flex-grow animation-fade-in col-md-auto">
         <!-- ko if: api -->
         <h1 class="text-wrap">
-            <span data-bind="text: api().displayName"></span>
+            <span data-bind="text: api().versionedDisplayName"></span>
             <!-- ko if: api().type === 'soap' -->
             <span class="badge badge-soap">SOAP</span>
             <!-- /ko -->
